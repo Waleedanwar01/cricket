@@ -23,7 +23,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Fullscreen } from "lucide-react";
-import ParticlesScene from "./components/ParticalsScene";
+// import ParticlesScene from "./components/ParticalsScene";
 
 // Typing effect component
 const TypingText = ({ texts, speed = 15, pause = 1700 }) => {
@@ -69,7 +69,7 @@ export default function HomeClient() {
     
     <main className="relative flex-1 flex flex-col justify-start items-center text-center w-full overflow-x-hidden px-4 py-20 bg-gradient-to-b from-green-900 via-gray-900 to-black">
        {/* ✅ Particles Background */}
-  <ParticlesScene />
+  {/* <ParticlesScene /> */}
 
       {/* Hero Section */}
       <section className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
