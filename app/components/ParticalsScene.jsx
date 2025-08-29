@@ -30,9 +30,6 @@ export default function ParticlesScene() {
       const geometry = new THREE.BufferGeometry();
       const vertices = [];
 
-      const sprite = new THREE.TextureLoader().load("/textures/sprites/disc.png");
-      sprite.colorSpace = THREE.SRGBColorSpace;
-
       for (let i = 0; i < 5000; i++) {
         const x = 2000 * Math.random() - 1000;
         const y = 2000 * Math.random() - 1000;
@@ -43,11 +40,11 @@ export default function ParticlesScene() {
       geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
 
       material = new THREE.PointsMaterial({
+        color: 0x00ff00, // Green color
         size: 25,
         sizeAttenuation: true,
-        map: sprite,
-        alphaTest: 0.5,
         transparent: true,
+        opacity: 0.8,
       });
 
       const particles = new THREE.Points(geometry, material);
