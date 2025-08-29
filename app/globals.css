@@ -1,71 +1,7 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import "tailwindcss/preflight";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/* Remove experimental @custom-variant and @theme inline */
-
-:root {
-  --radius: 0.625rem;
-  --card: #f5f5f5;
-  --card-foreground: #111111;
-  --popover: #f5f5f5;
-  --popover-foreground: #111111;
-  --primary: #1d4ed8;
-  --primary-foreground: #ffffff;
-  --secondary: #6b7280;
-  --secondary-foreground: #ffffff;
-  --muted: #d1d5db;
-  --muted-foreground: #111111;
-  --accent: #facc15;
-  --accent-foreground: #111111;
-  --destructive: #dc2626;
-  --border: #e5e7eb;
-  --input: #f9fafb;
-  --ring: #3b82f6;
-  --chart-1: #f97316;
-  --chart-2: #10b981;
-  --chart-3: #3b82f6;
-  --chart-4: #8b5cf6;
-  --chart-5: #ec4899;
-  --sidebar: #f3f4f6;
-  --sidebar-foreground: #111111;
-  --background: #ffffff;
-  --foreground: #111111;
-}
-
-.dark {
-  --background: #111111;
-  --foreground: #ffffff;
-  --card: #1f2937;
-  --card-foreground: #ffffff;
-  --popover: #1f2937;
-  --popover-foreground: #ffffff;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --secondary: #374151;
-  --secondary-foreground: #ffffff;
-  --muted: #4b5563;
-  --muted-foreground: #ffffff;
-  --accent: #facc15;
-  --accent-foreground: #111111;
-  --destructive: #dc2626;
-  --border: #1f2937;
-  --input: #1f2937;
-  --ring: #3b82f6;
-  --sidebar: #111111;
-  --sidebar-foreground: #ffffff;
-}
-
-@layer base {
-  * {
-    @apply border border-gray-200 outline-none;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
-  }
-}
-
-body {
+body{
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
