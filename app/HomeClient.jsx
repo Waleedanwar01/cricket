@@ -67,7 +67,7 @@ export default function HomeClient() {
 
   return (
     
-    <main className="relative flex-1 flex flex-col justify-start items-center text-center px-4 py-20 bg-gradient-to-b from-green-900 via-gray-900 to-black">
+    <main className="relative flex-1 flex flex-col justify-start items-center text-center w-full overflow-x-hidden px-4 py-20 bg-gradient-to-b from-green-900 via-gray-900 to-black">
        {/* ✅ Particles Background */}
   <ParticlesScene />
 
@@ -89,7 +89,7 @@ export default function HomeClient() {
             Experience modern facilities, fast booking, and a community of
             cricket enthusiasts.
           </p>
-          <div className="flex gap-4 mt-4">
+          <div className="flex flex-wrap gap-4 mt-4">
             <Button className="bg-green-500 hover:bg-green-600 text-white">
               <Link href="/booking">Book Now</Link>
             </Button>
@@ -98,7 +98,7 @@ export default function HomeClient() {
             </Button>
           </div>
         </div>
-        <div className="flex-1 relative w-full h-96 md:h-[28rem]">
+        <div className="flex-1 relative w-full h-96 md:h-[28rem] overflow-hidden">
           {/* Top Left - Small */}
           <div className="absolute top-0 left-0 w-1/3 h-1/2 rounded-2xl overflow-hidden shadow-2xl z-10">
             <Image
@@ -113,7 +113,7 @@ export default function HomeClient() {
 
           {/* Top Right - Large */}
           <div className="absolute top-0 right-0 w-2/3 h-1/2 rounded-2xl overflow-hidden shadow-2xl z-20">
-            <Image 
+            <Image
               src="/images/cricket1.jpg"
               alt="Top Right Large"
                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -189,7 +189,7 @@ export default function HomeClient() {
       </section>
 
       {/* Statistics Section */}
-      <section className="w-full max-w-5xl mt-20 grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+      <section className="w-full max-w-5xl mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div className="p-6 bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition">
           <h3 className="text-4xl font-bold text-green-400 mb-2" data-aos="fade">50+</h3>
           <p className="text-gray-200">Courts Available</p>
