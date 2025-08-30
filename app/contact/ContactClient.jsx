@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
-
+import ParticlesScene from "../components/ParticalsScene";
 const ContactClient = () => {
   const [form, setform] = useState({
     name: "",
@@ -18,7 +18,7 @@ const ContactClient = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://127.0.0.1:8000/contact/", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/contact/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -50,8 +50,9 @@ const ContactClient = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-900 to-black">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b">
       {/* Hero Section */}
+      <ParticlesScene />
       <section className="py-20 px-4 text-center">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
           Contact Us
