@@ -13,7 +13,7 @@ export default function SignupPage() {
   async function handleSignup(e) {
     e.preventDefault();
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup/`, {
+      const res = await fetch(apiConfig.endpoints.auth.signup, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
@@ -105,7 +105,7 @@ export default function SignupPage() {
           
                               {/* Google login */}
                               <a
-                                  href="http://localhost:8000/accounts/login/google-oauth2/?next=http://localhost:3000"
+                                  href={apiConfig.endpoints.googleLogin}
                                   className="w-full flex items-center justify-center gap-2 bg-white shadow-xl text-black py-3 rounded-lg font-semibold hover:scale-105 border-1 border-black transition"
                               >
                                   <FcGoogle className="text-xl bg-white rounded-full" />
