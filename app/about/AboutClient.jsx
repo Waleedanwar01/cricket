@@ -15,7 +15,7 @@ export default function AboutClient() {
 
     const fetchTeam = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/team/", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}team/`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         })
