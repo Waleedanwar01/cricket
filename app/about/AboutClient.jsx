@@ -135,7 +135,7 @@ export default function AboutClient() {
               >
                 <div className="relative w-32 h-32 mx-auto mb-4">
                   <Image
-                    src={`http://127.0.0.1:8000/media/${member.image}`}
+                    src={`https://web-staging-cc40.up.railway.app/media/${member.image}`}
                     alt={member.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 

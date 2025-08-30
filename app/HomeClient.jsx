@@ -67,7 +67,7 @@ export default function HomeClient() {
 
   return (
     
-    <main className="relative flex-1 flex flex-col justify-start items-center text-center w-full overflow-x-hidden px-4 py-20 bg-gradient-to-b from-green-900 via-gray-900 to-black">
+    <main className="relative flex-1 flex flex-col justify-start items-center text-center w-full overflow-x-hidden px-4 py-20 ">
        {/* ✅ Particles Background */}
   <ParticlesScene />
 
