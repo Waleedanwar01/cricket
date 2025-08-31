@@ -27,7 +27,7 @@ export default function LoginPage() {
     async function handleLogin(e) {
         e.preventDefault();
         try {
-            const res = await fetch(apiConfig.endpoints.auth.login, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login/`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
@@ -95,14 +95,14 @@ export default function LoginPage() {
                         <hr className="flex-1 border-gray-300" />
                     </div>
 
-                    {/* Google login */}
-                    <a
-                        href={apiConfig.endpoints.googleLogin}
-                        className="w-full flex items-center justify-center gap-2 bg-white shadow-xl text-black py-3 rounded-lg font-semibold hover:scale-105 border-1 border-black transition"
-                    >
-                        <FcGoogle className="text-xl bg-white rounded-full" />
-                        Login with Google
-                    </a>
+                  {/* Google login */}
+                              <a
+                                  href="https://web-staging-cc40.up.railway.app/accounts/login/google-oauth2/?next=https://cricket-zeta-hazel.vercel.app"
+                                  className="w-full flex items-center justify-center gap-2 bg-white shadow-xl text-black py-3 rounded-lg font-semibold hover:scale-105 border-1 border-black transition"
+                              >
+                                  <FcGoogle className="text-xl bg-white rounded-full" />
+                                  Login with Google
+                              </a>
 
 
                     <p className="text-center text-gray-500 mt-6">

@@ -16,7 +16,7 @@ export default function LogoutButton() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/auth/logout/", {
+      const res = await fetch("https://web-staging-cc40.up.railway.app/auth/logout/", {
         method: "GET",
         credentials: "include",
       });
