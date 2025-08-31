@@ -37,6 +37,9 @@ export default function LoginPage() {
             const data = await res.json();
 
             if (res.ok) {
+                // ✅ save tokens
+                localStorage.setItem("access", data.jwt_access);
+                localStorage.setItem("refresh", data.jwt_refresh);
                 toast.success(data.message); // ✅ show success
                 window.location.href = "/";
             } else {
@@ -95,14 +98,14 @@ export default function LoginPage() {
                         <hr className="flex-1 border-gray-300" />
                     </div>
 
-                  {/* Google login */}
-                              <a
-                                  href="https://web-staging-cc40.up.railway.app/accounts/login/google-oauth2/?next=https://cricket-zeta-hazel.vercel.app"
-                                  className="w-full flex items-center justify-center gap-2 bg-white shadow-xl text-black py-3 rounded-lg font-semibold hover:scale-105 border-1 border-black transition"
-                              >
-                                  <FcGoogle className="text-xl bg-white rounded-full" />
-                                  Login with Google
-                              </a>
+                    {/* Google login */}
+                    <a
+                        href="https://web-staging-cc40.up.railway.app/accounts/login/google-oauth2/?next=https://cricket-zeta-hazel.vercel.app"
+                        className="w-full flex items-center justify-center gap-2 bg-white shadow-xl text-black py-3 rounded-lg font-semibold hover:scale-105 border-1 border-black transition"
+                    >
+                        <FcGoogle className="text-xl bg-white rounded-full" />
+                        Login with Google
+                    </a>
 
 
                     <p className="text-center text-gray-500 mt-6">

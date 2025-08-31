@@ -1,44 +1,49 @@
 "use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useUser } from "../contexts/UserProvider";
-import { toast } from "react-toastify";
+import { createContext, useContext, useState, useEffect } from "react";
 
-export default function ProtectedRoute({ children, requireAuth = true, redirectTo = "/" }) {
-  const { user, loading } = useUser();
-  const router = useRouter();
+const UserContext = createContext();
+
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!loading) {
-      if (requireAuth && !user) {
-        // User must be logged in but isn't
-        toast.error("Please login to access this page");
-        router.push("/login");
-      } else if (!requireAuth && user) {
-        // User must NOT be logged in but is
-        toast.info("You are already logged in!");
-        router.push(redirectTo);
+    const fetchUser = async () => {
+      const accessToken = localStorage.getItem("access"); // token get karo
+      if (!accessToken) {
+        setLoading(false);
+        return;
       }
-    }
-  }, [user, loading, requireAuth, redirectTo, router]);
 
-  // Show loading while checking authentication
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="w-16 h-16 border-4 border-green-500 border-dashed rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/me/`, {
+          headers: {
+            "Authorization": `Bearer ${accessToken}`, // 👈 token bhejna zaroori hai
+          },
+        });
 
-  // Don't render children if authentication requirement is not met
-  if (requireAuth && !user) {
-    return null;
-  }
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data);
+        } else {
+          setUser(null); // token expired or invalid
+        }
+      } catch (err) {
+        console.error("User fetch failed:", err);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!requireAuth && user) {
-    return null;
-  }
+    fetchUser();
+  }, []);
 
-  return children;
-} 
+  return (
+    <UserContext.Provider value={{ user, setUser, loading }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+export const useUser = () => useContext(UserContext);

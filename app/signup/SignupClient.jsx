@@ -23,6 +23,10 @@ export default function SignupPage() {
       const data = await res.json();
 
       if (res.ok) {
+        // ✅ save tokens
+      localStorage.setItem("access", data.jwt_access);
+      localStorage.setItem("refresh", data.jwt_refresh);
+
         toast.success(data.message); // ✅ show success
         // optional: redirect after signup
         window.location.href = "/login";
