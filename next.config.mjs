@@ -8,6 +8,17 @@ const nextConfig = {
         port: "8000",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "web-staging-cc40.up.railway.app",
+        pathname: "/**",
+      },
+      // when you go live, also add your main domain
+      {
+        protocol: "https",
+        hostname: "yourdomain.com",
+        pathname: "/**",
+      },
     ],
   },
 };
