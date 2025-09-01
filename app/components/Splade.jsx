@@ -28,17 +28,17 @@ export default function Partners() {
             type: "loop",
             drag: "free",
             focus: "center",
-            perPage: 4,
+            perPage: 4,       // Desktop default
             arrows: false,
             pagination: false,
-            autoScroll: {
-              speed: 1,
-            },
             gap: "2rem",
+            autoScroll: {
+              speed: 2,       // Desktop speed slightly faster
+            },
             breakpoints: {
-              1024: { perPage: 3 },
-              768: { perPage: 2 },
-              480: { perPage: 1 },
+              1024: { perPage: 3, autoScroll: { speed: 2 } },  // Laptop/tablet
+              768: { perPage: 2, autoScroll: { speed: 3 } },   // Mobile - show 2 logos & faster
+              480: { perPage: 2, autoScroll: { speed: 3.5 } }, // Small mobile - still 2 logos & faster
             },
           }}
           extensions={{ AutoScroll }}

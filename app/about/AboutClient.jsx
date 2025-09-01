@@ -94,50 +94,23 @@ export default function AboutClient() {
           </div>
         </div>
       </section>
-
-      {/* Team Section */}
-      <section className="py-20 px-4 text-center bg-gray-950/60">
-        <h2 className="text-4xl font-bold text-white mb-12">Meet Our Team</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-6xl mx-auto">
-          {team.map((member, index) => (
-            <div
-              key={index}
-              className="p-6 rounded-xl shadow-lg bg-gray-900 hover:shadow-2xl transition transform hover:scale-105"
-            >
-              <div className="relative w-32 h-32 mx-auto mb-4">
-                <Image
-                src={member.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image}` : "/images/default-avatar.png"}
-                  alt={member.name || "Team Member"}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover rounded-full"
-                />
-              </div>
-              <h3 className="text-xl font-semibold mb-1 text-white">{member.name || "Unknown"}</h3>
-              <p className="text-green-400 font-medium mb-3">{member.rank || "Member"}</p>
-
-              {/* Social Links */}
-              <div className="flex justify-center gap-4 text-gray-400">
-                {member.facebook && (
-                  <Link href={member.facebook} target="_blank" rel="noopener noreferrer">
-                    <FaFacebook className="hover:text-blue-500 cursor-pointer transition" />
-                  </Link>
-                )}
-                {member.twitter && (
-                  <Link href={member.twitter} target="_blank" rel="noopener noreferrer">
-                    <FaTwitter className="hover:text-sky-400 cursor-pointer transition" />
-                  </Link>
-                )}
-                {member.linkedin && (
-                  <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                    <FaLinkedin className="hover:text-blue-600 cursor-pointer transition" />
-                  </Link>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+<section className="py-20 px-4 bg-gradient-to-b from-black via-gray-900 to-black text-white">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6">About CricketCourt</h2>
+        <p className="text-gray-300 text-lg md:text-xl mb-4">
+          CricketCourt is your ultimate platform to book cricket courts quickly and hassle-free. 
+          We provide a seamless experience for cricket enthusiasts to enjoy their games anytime, anywhere.
+        </p>
+        <p className="text-gray-300 text-lg md:text-xl mb-4">
+          Our mission is to build a thriving cricket community, offering well-maintained courts, 
+          organized tournaments, and easy scheduling for players of all skill levels.
+        </p>
+        <p className="text-gray-300 text-lg md:text-xl">
+          Join CricketCourt today and experience the best way to play, connect, and enjoy cricket with friends.
+        </p>
+      </div>
+    </section>
+     
     </div>
   );
 }
