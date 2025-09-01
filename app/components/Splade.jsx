@@ -31,14 +31,14 @@ export default function Partners() {
             perPage: 4,       // Desktop default
             arrows: false,
             pagination: false,
-            gap: "2rem",
+            gap: "1.4rem",
             autoScroll: {
               speed: 2,       // Desktop speed slightly faster
             },
             breakpoints: {
               1024: { perPage: 3, autoScroll: { speed: 2 } },  // Laptop/tablet
-              768: { perPage: 2, autoScroll: { speed: 3 } },   // Mobile - show 2 logos & faster
-              480: { perPage: 2, autoScroll: { speed: 3.5 } }, // Small mobile - still 2 logos & faster
+              768: { perPage: 3, autoScroll: { speed: 3 } },   // Mobile - show 2 logos & faster
+              480: { perPage: 3, autoScroll: { speed: 3.5 } }, // Small mobile - still 2 logos & faster
             },
           }}
           extensions={{ AutoScroll }}

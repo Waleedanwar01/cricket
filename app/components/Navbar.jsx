@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <nav
       className={`text-white sticky top-0 z-50 shadow-2xl shadow-gray-800 transition-all duration-300 ${
-        isOpen ? "bg-gray-900/98" : "bg-gray-900/95"
+        isOpen ? "" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,7 +149,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-gray-900/95 backdrop-blur-sm border-t border-gray-700 ${
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out backdrop-blur-sm border-t border-gray-700 ${
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
