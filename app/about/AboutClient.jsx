@@ -106,7 +106,7 @@ export default function AboutClient() {
             >
               <div className="relative w-32 h-32 mx-auto mb-4">
                 <Image
-                  src={member.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}/media/team/${member.image}` : "/images/default-avatar.png"}
+                src={member.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${member.image}` : "/images/default-avatar.png"}
                   alt={member.name || "Team Member"}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
