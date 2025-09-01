@@ -27,7 +27,7 @@ export default function LoginPage() {
     async function handleLogin(e) {
         e.preventDefault();
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login/`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login/`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
