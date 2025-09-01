@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import ProtectedRoute from "../components/ProtectedRoute";
+
 import DashboardClient from "./DashboardClient";
 
 export const metadata = {
@@ -9,9 +9,9 @@ export const metadata = {
 }
 export default function Page() {
   return (
-    <ProtectedRoute requireAuth={true}>
+   
       <DashboardClient />
-    </ProtectedRoute>
+   
   );
 }
 

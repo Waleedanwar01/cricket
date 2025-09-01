@@ -1,5 +1,5 @@
 "use client";
-
+import ProtectedRoute from "../components/ProtectedRoute";
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -107,6 +107,7 @@ export default function DashboardClient() {
   }
 
   return (
+    <ProtectedRoute requireAuth={true} redirectTo="/">
     <div className="min-h-screen bg-gray-950 text-white px-4 py-10">
       <ToastContainer />
       <div className="max-w-6xl mx-auto space-y-12">
@@ -379,5 +380,6 @@ export default function DashboardClient() {
         </section>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }
