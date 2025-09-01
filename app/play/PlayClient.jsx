@@ -74,7 +74,7 @@ export default function PlayTournamentsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white px-4 py-10">
+    <div className="min-h-screen text-white px-4 py-10">
       <ToastContainer />
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}

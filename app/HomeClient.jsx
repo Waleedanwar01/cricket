@@ -23,7 +23,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Fullscreen } from "lucide-react";
-import ParticlesScene from "./components/ParticalsScene";
+
 
 // Typing effect component
 const TypingText = ({ texts, speed = 15, pause = 1700 }) => {
@@ -90,10 +90,10 @@ export default function HomeClient() {
             cricket enthusiasts.
           </p>
           <div className="flex flex-wrap gap-4 mt-4">
-            <Button className="bg-green-500 hover:bg-green-600 text-white">
+            <Button className="bg-green-500 hover:bg-green-600 text-white w-40 rotate-3">
               <Link href="/booking">Book Now</Link>
             </Button>
-            <Button className="hover:border-2 hover:border-green-500 text-green-500 hover:scale-105 transform hover:bg-white transition ease-in border-2 border-white rounded-2xl">
+            <Button className="hover:border-2 hover:border-green-500 text-green-500 hover:scale-105 transform hover:bg-white transition ease-in border-2 border-white rounded-lg w-40 rotate-3">
               <Link href="/about">Learn More</Link>
             </Button>
           </div>

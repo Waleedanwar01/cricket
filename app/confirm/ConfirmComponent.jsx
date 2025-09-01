@@ -40,7 +40,7 @@ export default function ConfirmComponent() {
   }, [searchParams, router]);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
+    <div className="min-h-screen text-white flex items-center justify-center">
       <ToastContainer />
       {status === "pending" && <p>Confirming your booking...</p>}
       {status === "ok" && <p>Booking confirmed. Redirecting...</p>}

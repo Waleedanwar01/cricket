@@ -38,7 +38,7 @@ const TournamentClient = () => {
     );
   }
     return (
-        <div className="min-h-screen bg-gray-900 text-gray-100 transition-colors duration-300 p-6">
+        <div className="min-h-screen text-gray-100 transition-colors duration-300 p-6">
 
             {/* Rules & Regulations Section */}
             <div className="max-w-4xl mx-auto mb-8 p-6 bg-gray-800 rounded-2xl shadow-md">
