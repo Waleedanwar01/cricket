@@ -100,7 +100,7 @@ export default function ParticlesScene() {
   return (
     <div
       ref={mountRef}
-      className="fixed inset-0 -z-10 w-full h-full"
+      className="fixed inset-0 -z-10 w-full h-full opacity-25"
     />
   );
 }

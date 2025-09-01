@@ -189,7 +189,7 @@ const BookClient = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold mb-4">Authentication Required</h2>
           <p className="mb-4">You need to login to book a court.</p>

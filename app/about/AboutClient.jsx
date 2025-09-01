@@ -43,7 +43,7 @@ export default function AboutClient() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-black via-gray-900 to-black">
+    <div className="min-h-screen flex flex-col ">
       {/* Hero Section */}
       <section className="relative py-20 px-4 text-center">
         <div className="absolute inset-0">

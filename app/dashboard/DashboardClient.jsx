@@ -108,7 +108,7 @@ export default function DashboardClient() {
 
   return (
     <ProtectedRoute requireAuth={true} redirectTo="/">
-    <div className="min-h-screen bg-gray-950 text-white px-4 py-10">
+    <div className="min-h-screen text-white px-4 py-10">
       <ToastContainer />
       <div className="max-w-6xl mx-auto space-y-12">
         {/* HEADER */}

@@ -90,10 +90,10 @@ export default function HomeClient() {
             cricket enthusiasts.
           </p>
           <div className="flex flex-wrap gap-4 mt-4">
-            <Button className="bg-green-500 hover:bg-green-600 text-white w-40 rotate-3">
+            <Button className="bg-green-500 hover:bg-green-600 text-white rotate-3 py-12 px-4">
               <Link href="/booking">Book Now</Link>
             </Button>
-            <Button className="hover:border-2 hover:border-green-500 text-green-500 hover:scale-105 transform hover:bg-white transition ease-in border-2 border-white rounded-lg w-40 rotate-3">
+            <Button className="hover:border-2 hover:border-green-500 text-green-500 hover:scale-105 transform hover:bg-white transition ease-in border-2 border-white rounded-lg px-4 py-12 rotate-3">
               <Link href="/about">Learn More</Link>
             </Button>
           </div>
