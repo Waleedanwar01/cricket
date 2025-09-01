@@ -189,7 +189,7 @@ const BookClient = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold mb-4">Authentication Required</h2>
           <p className="mb-4">You need to login to book a court.</p>
@@ -246,7 +246,7 @@ const BookClient = () => {
       </div>
 
       {/* Booking Form */}
-      <div className="max-w-2xl mx-auto mt-16 mb-16 bg-gray-800 rounded-2xl shadow-lg border border-gray-700 p-8">
+      <div className="max-w-2xl mx-auto mt-16 mb-16 rounded-2xl shadow-lg border border-gray-700 p-8">
         <h2 className="text-2xl font-bold text-center text-white">Reserve Your Slot</h2>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {/* Name */}
