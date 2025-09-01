@@ -5,7 +5,7 @@ import ClientProvider from "./ClientProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "./components/theme-provider";
-
+import ParticlesScene from "./components/ParticalsScene";
 export const metadata = {
   icons: {
     icon: "/favicon.png",
@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
             enableSystem
             disableTransitionOnChange
           >
+            <ParticlesScene />
             <Navbar />
             {children}
             <ToastContainer position="top-left" autoClose={2000} />

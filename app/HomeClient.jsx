@@ -69,7 +69,7 @@ export default function HomeClient() {
     
     <main className="relative flex-1 flex flex-col justify-start items-center text-center w-full overflow-x-hidden px-4 py-20 ">
        {/* ✅ Particles Background */}
-  <ParticlesScene />
+  {/* <ParticlesScene /> */}
 
       {/* Hero Section */}
       <section className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
