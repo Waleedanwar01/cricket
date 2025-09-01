@@ -149,7 +149,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out backdrop-blur-sm border-t border-gray-700 ${
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out backdrop-blur-sm  ${
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >

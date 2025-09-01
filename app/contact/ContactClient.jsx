@@ -1,58 +1,51 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import { Loader2 } from "lucide-react";
 
 const ContactClient = () => {
-  const [form, setform] = useState({
+  const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [submitting, setSubmitting] = useState(false); // ✅ new state
 
   const handleChange = (e) => {
-    setform({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true); // ✅ show loader
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/contact/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/contact/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         toast.success(data.message);
-        setform({ name: "", email: "", message: "" });
+        setForm({ name: "", email: "", message: "" });
       } else {
-        toast.error(data.error);
+        toast.error(data.error || "Something went wrong");
       }
     } catch (error) {
       toast.error("Something Went Wrong");
+    } finally {
+      setSubmitting(false); // ✅ hide loader
     }
   };
-
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="w-16 h-16 border-4 border-green-500 border-dashed rounded-full animate-spin"></div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b">
       {/* Hero Section */}
-      
       <section className="py-20 px-4 text-center">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
           Contact Us
@@ -133,9 +126,17 @@ const ContactClient = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition transform hover:scale-105"
+              disabled={submitting}
+              className="w-full bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition transform hover:scale-105 flex items-center justify-center gap-2 disabled:opacity-70"
             >
-              Send Message
+              {submitting ? (
+                <>
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                "Send Message"
+              )}
             </button>
           </form>
         </div>
