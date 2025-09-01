@@ -184,7 +184,7 @@ const BookClient = () => {
 
   if (loading)
     return (
-      <p className="text-center mt-20 text-white">Checking authentication...</p>
+      <p className="text-center mt-20 text-white bg-gray-900">Checking authentication...</p>
     );
 
   if (!user) {
@@ -206,7 +206,7 @@ const BookClient = () => {
 
   return (
     <ProtectedRoute requireAuth={true}>
-      <div className="min-h-screen relative bg-gray-900">
+      <div className="min-h-screen relative">
       <ToastContainer />
 
       {/* Hero Section */}
