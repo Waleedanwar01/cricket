@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,10 +26,21 @@ const TournamentClient = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check if token exists
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("You must be logged in to create a tournament", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      setTimeout(() => router.push("/login"), 1500);
+      return;
+    }
+
     // Simulate initial loading
     const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [router]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -43,7 +55,7 @@ const TournamentClient = () => {
     if (!token) {
       toast.error("You must be logged in to create a tournament", {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
       });
       return;
     }
@@ -61,10 +73,7 @@ const TournamentClient = () => {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Tournament created successfully!", {
-          position: "top-right",
-          autoClose: 4000,
-        });
+        toast.success("Tournament created successfully!", { position: "top-right", autoClose: 4000 });
         // Reset form
         setFormData({
           name: "",
@@ -79,10 +88,7 @@ const TournamentClient = () => {
           description: "",
         });
       } else {
-        toast.error("Error: " + (data.detail || JSON.stringify(data)), {
-          position: "top-right",
-          autoClose: 5000,
-        });
+        toast.error("Error: " + (data.detail || JSON.stringify(data)), { position: "top-right", autoClose: 5000 });
       }
     } catch (err) {
       console.error(err);
@@ -107,7 +113,7 @@ const TournamentClient = () => {
         <h2 className="text-xl md:text-2xl font-bold text-white mb-4">Rules & Regulations</h2>
         <ul className="list-disc list-inside space-y-2 text-gray-300 text-sm md:text-base">
           <li>No fights will be tolerated during the tournament.</li>
-          <li>The court owner will charge <span className="font-semibold text-red-400">PKR 1800 per hour</span>, no matter how many days the tournament continues.</li>
+          <li>The court owner will charge <span className="font-semibold text-red-400">PKR 1800 per hour</span>.</li>
           <li>Each tournament will strictly have a <span className="font-semibold text-yellow-400">daily 2-hour slot</span>.</li>
           <li>The tournament holder is responsible for organizing and managing within the allotted time.</li>
           <li>Maximum teams in a tournament will determine the total number of days required.</li>
@@ -119,7 +125,6 @@ const TournamentClient = () => {
         <h2 className="text-2xl font-bold text-center text-white mb-6">Create New Tournament</h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Tournament Name */}
           <div>
             <label className="block text-gray-300 font-medium">Tournament Name</label>
             <input
@@ -133,7 +138,6 @@ const TournamentClient = () => {
             />
           </div>
 
-          {/* Game Type */}
           <div>
             <label className="block text-gray-300 font-medium">Game Type</label>
             <input
@@ -147,7 +151,6 @@ const TournamentClient = () => {
             />
           </div>
 
-          {/* Location, Date, Time */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-gray-300 font-medium">Location</label>
@@ -185,7 +188,6 @@ const TournamentClient = () => {
             </div>
           </div>
 
-          {/* Entry Fee, Max Teams, Max Players, Max Overs */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-gray-300 font-medium">Entry Fee (PKR)</label>
@@ -237,7 +239,6 @@ const TournamentClient = () => {
             </div>
           </div>
 
-          {/* Description */}
           <div>
             <label className="block text-gray-300 font-medium">Description</label>
             <textarea
@@ -251,7 +252,6 @@ const TournamentClient = () => {
             ></textarea>
           </div>
 
-          {/* Buttons */}
           <div className="flex justify-between items-center">
             <button
               type="reset"
