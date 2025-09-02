@@ -109,7 +109,7 @@ export default function SignupPage() {
           
                               {/* Google login */}
                               <a
-                                  href="https://web-staging-cc40.up.railway.app/accounts/login/google-oauth2/?next=https://cricket-zeta-hazel.vercel.app/login"
+                                  href="https://web-staging-cc40.up.railway.app/accounts/login/google-oauth2/?next=https://cricket-zeta-hazel.vercel.app/auth-callback"
                                   className="w-full flex items-center justify-center gap-2 bg-white shadow-xl text-black py-3 rounded-lg font-semibold hover:scale-105 border-1 border-black transition"
                               >
                                   <FcGoogle className="text-xl bg-white rounded-full" />

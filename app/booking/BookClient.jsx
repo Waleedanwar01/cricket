@@ -58,7 +58,15 @@ const BookClient = () => {
   const fetchBookedSlots = async (date) => {
     try {
       setLoadingSlots(true);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/booked-slots/?date=${date}`);
+      // Get JWT token from localStorage
+      const token = localStorage.getItem('access');
+      
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/booked-slots/?date=${date}`, {
+        headers: {
+          "Authorization": token ? `Bearer ${token}` : ""
+        },
+        credentials: "include"
+      });
       const data = await res.json();
       if (res.ok) setBookedSlots(data.booked_slots || []);
       else setBookedSlots([]);
@@ -120,10 +128,14 @@ const BookClient = () => {
 
       console.log("Submitting booking data:", bookingData);
 
+      // Get JWT token from localStorage
+      const token = localStorage.getItem('access');
+      
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book/`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
+          "Authorization": token ? `Bearer ${token}` : "",
         },
         credentials: "include",
         body: JSON.stringify(bookingData),

@@ -12,8 +12,14 @@ export function UserProvider({ children }) {
   // Fetch current user from backend
   const fetchUser = async () => {
     try {
+      // Get JWT token from localStorage
+      const token = localStorage.getItem('access');
+      
       const res = await fetch(apiConfig.endpoints.auth.me, {
         credentials: "include", // important for cookies
+        headers: {
+          "Authorization": token ? `Bearer ${token}` : ""
+        }
       });
       const data = await res.json();
       if (res.ok) {
