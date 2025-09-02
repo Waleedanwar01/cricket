@@ -26,20 +26,21 @@ const TournamentClient = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if token exists
-    const token = localStorage.getItem("token");
-    if (!token) {
-      toast.error("You must be logged in to create a tournament", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-      setTimeout(() => router.push("/login"), 1500);
-      return;
-    }
+    const checkLogin = () => {
+      const token = localStorage.getItem("token");
 
-    // Simulate initial loading
-    const timer = setTimeout(() => setLoading(false), 500);
-    return () => clearTimeout(timer);
+      if (!token) {
+        toast.error("You must be logged in to create a tournament", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        setTimeout(() => router.replace("/login"), 1500);
+      } else {
+        setLoading(false);
+      }
+    };
+
+    checkLogin();
   }, [router]);
 
   // Handle input changes
@@ -73,7 +74,11 @@ const TournamentClient = () => {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Tournament created successfully!", { position: "top-right", autoClose: 4000 });
+        toast.success("Tournament created successfully!", {
+          position: "top-right",
+          autoClose: 4000,
+        });
+
         // Reset form
         setFormData({
           name: "",
@@ -88,7 +93,10 @@ const TournamentClient = () => {
           description: "",
         });
       } else {
-        toast.error("Error: " + (data.detail || JSON.stringify(data)), { position: "top-right", autoClose: 5000 });
+        toast.error("Error: " + (data.detail || JSON.stringify(data)), {
+          position: "top-right",
+          autoClose: 5000,
+        });
       }
     } catch (err) {
       console.error(err);
