@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 const TournamentClient = () => {
   const router = useRouter();
+  const [mounted, setMounted] = useState(false); // ensures client-side only
 
   // Form state
   const [formData, setFormData] = useState({
@@ -25,23 +26,27 @@ const TournamentClient = () => {
   // Loading state
   const [loading, setLoading] = useState(true);
 
+  // Ensure component is mounted before accessing localStorage
   useEffect(() => {
-    const checkLogin = () => {
-      const token = localStorage.getItem("token");
+    setMounted(true);
+  }, []);
 
-      if (!token) {
-        toast.error("You must be logged in to create a tournament", {
-          position: "top-right",
-          autoClose: 3000,
-        });
-        setTimeout(() => router.replace("/login"), 1500);
-      } else {
-        setLoading(false);
-      }
-    };
+  // Check login status
+  useEffect(() => {
+    if (!mounted) return;
 
-    checkLogin();
-  }, [router]);
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      toast.error("You must be logged in to create a tournament", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      setTimeout(() => router.replace("/login"), 1500);
+    } else {
+      setLoading(false);
+    }
+  }, [mounted, router]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -74,11 +79,7 @@ const TournamentClient = () => {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Tournament created successfully!", {
-          position: "top-right",
-          autoClose: 4000,
-        });
-
+        toast.success("Tournament created successfully!", { position: "top-right", autoClose: 4000 });
         // Reset form
         setFormData({
           name: "",
@@ -93,10 +94,7 @@ const TournamentClient = () => {
           description: "",
         });
       } else {
-        toast.error("Error: " + (data.detail || JSON.stringify(data)), {
-          position: "top-right",
-          autoClose: 5000,
-        });
+        toast.error("Error: " + (data.detail || JSON.stringify(data)), { position: "top-right", autoClose: 5000 });
       }
     } catch (err) {
       console.error(err);
