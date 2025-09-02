@@ -13,7 +13,15 @@ export default function PlayTournamentsPage() {
   const load = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:8000/tournaments/all/");
+      // Get JWT token from localStorage
+      const token = localStorage.getItem('access');
+      
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/tournaments/all/`, {
+        headers: {
+          "Authorization": token ? `Bearer ${token}` : ""
+        },
+        credentials: "include"
+      });
       const data = await res.json();
       if (res.ok) setItems(data);
     } catch (e) {

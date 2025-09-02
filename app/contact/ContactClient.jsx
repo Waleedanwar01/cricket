@@ -21,11 +21,18 @@ const ContactClient = () => {
     e.preventDefault();
     setSubmitting(true); // ✅ show loader
     try {
+      // Get JWT token from localStorage
+      const token = localStorage.getItem('access');
+      
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/contact/`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": token ? `Bearer ${token}` : ""
+          },
+          credentials: "include",
           body: JSON.stringify(form),
         }
       );

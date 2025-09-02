@@ -12,9 +12,16 @@ export default function AboutClient() {
   useEffect(() => {
     const fetchTeam = async () => {
       try {
+        // Get JWT token from localStorage
+        const token = localStorage.getItem('access');
+        
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/team/`, {
           method: "GET",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": token ? `Bearer ${token}` : ""
+          },
+          credentials: "include"
         });
 
         if (!res.ok) {
