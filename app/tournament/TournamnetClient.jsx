@@ -2,8 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 const TournamentClient = () => {
+  const router = useRouter();
+
   // Form state
   const [formData, setFormData] = useState({
     name: "",
@@ -18,16 +21,16 @@ const TournamentClient = () => {
     description: "",
   });
 
-  // Loading state for spinner
+  // Loading state
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial loading (or remove if not needed)
+    // Simulate initial loading
     const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle form input changes
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -35,12 +38,22 @@ const TournamentClient = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("You must be logged in to create a tournament", {
+        position: "top-right",
+        autoClose: 5000,
+      });
+      return;
+    }
+
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/tournaments/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
@@ -48,7 +61,10 @@ const TournamentClient = () => {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Tournament created successfully!", { position: "top-right", autoClose: 4000 });
+        toast.success("Tournament created successfully!", {
+          position: "top-right",
+          autoClose: 4000,
+        });
         // Reset form
         setFormData({
           name: "",
@@ -63,7 +79,10 @@ const TournamentClient = () => {
           description: "",
         });
       } else {
-        toast.error("Error: " + JSON.stringify(data), { position: "top-right", autoClose: 5000 });
+        toast.error("Error: " + (data.detail || JSON.stringify(data)), {
+          position: "top-right",
+          autoClose: 5000,
+        });
       }
     } catch (err) {
       console.error(err);
@@ -83,7 +102,7 @@ const TournamentClient = () => {
     <div className="min-h-screen text-gray-100 transition-colors duration-300 p-6">
       <ToastContainer />
 
-      {/* Rules & Regulations Section */}
+      {/* Rules & Regulations */}
       <div className="max-w-4xl mx-auto mb-8 p-6 bg-gray-800 rounded-2xl shadow-md">
         <h2 className="text-xl md:text-2xl font-bold text-white mb-4">Rules & Regulations</h2>
         <ul className="list-disc list-inside space-y-2 text-gray-300 text-sm md:text-base">
