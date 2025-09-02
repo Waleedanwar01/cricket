@@ -20,7 +20,7 @@ export default function ConfirmComponent() {
     }
     const confirm = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/bookings/confirm/${bookingId}/${token}/`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/bookings/confirm/${bookingId}/${token}/`);
         const data = await res.json();
         if (res.ok) {
           toast.success(data.message || "Booking confirmed");

@@ -58,7 +58,7 @@ const BookClient = () => {
   const fetchBookedSlots = async (date) => {
     try {
       setLoadingSlots(true);
-      const res = await fetch(`http://localhost:8000/booked-slots/?date=${date}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/booked-slots/?date=${date}`);
       const data = await res.json();
       if (res.ok) setBookedSlots(data.booked_slots || []);
       else setBookedSlots([]);
@@ -120,7 +120,7 @@ const BookClient = () => {
 
       console.log("Submitting booking data:", bookingData);
 
-      const res = await fetch("http://localhost:8000/book/", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book/`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
