@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const TournamentClient = () => {
     const [formData, setFormData] = useState({
         name: "",
@@ -19,24 +22,62 @@ const TournamentClient = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert("Tournament Added (Static Demo)");
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/tournaments/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                toast.success("Tournament created successfully!", {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                // Optionally reset form
+                setFormData({
+                    name: "",
+                    game: "Cricket (Indoor Tapeball)",
+                    location: "Faisalabad",
+                    date: "",
+                    time: "",
+                    entryFee: "",
+                    maxTeams: "",
+                    maxPlayer: "",
+                    maxOvers: "",
+                    description: "",
+                });
+            } else {
+                toast.error("Error: " + JSON.stringify(data), {
+                    position: "top-right",
+                    autoClose: 5000,
+                });
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("Server error!", { position: "top-right", autoClose: 5000 });
+        }
     };
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-900">
-        <div className="w-16 h-16 border-4 border-green-500 border-dashed rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen bg-gray-900">
+                <div className="w-16 h-16 border-4 border-green-500 border-dashed rounded-full animate-spin"></div>
+            </div>
+        );
+    }
     return (
         <div className="min-h-screen text-gray-100 transition-colors duration-300 p-6">
 
